@@ -45,6 +45,8 @@ namespace Assets
         private Rigidbody rb;
         [SerializeField] private Camera cam;
 
+        [SerializeField] private GameObject PlayerEmpty;
+
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
@@ -55,8 +57,6 @@ namespace Assets
 
         private void Update()
         {
-
-
 
             // ground check
             InputHandler();
