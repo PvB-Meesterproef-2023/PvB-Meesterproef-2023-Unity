@@ -12,33 +12,18 @@ public class KeyboardMovementHandler : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
     {
-        // move the player in the direction of the camera using wasd and dont let it get out of the map
-        if (Input.GetKey(KeyCode.W))
-        {
-            player.transform.position += speed * Time.deltaTime * playerCamera.transform.forward;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            player.transform.position -= speed * Time.deltaTime * playerCamera.transform.forward;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            player.transform.position -= speed * Time.deltaTime * playerCamera.transform.right;
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            player.transform.position += speed * Time.deltaTime * playerCamera.transform.right;
-        }
+        // move the player in the direction of the camera using force
 
 
 
-       
+
+
+
 
         // if the user presses right click, the movement of the mouse should rotate the camera
         if (Input.GetMouseButton(1))
