@@ -6,7 +6,9 @@ using UnityEngine;
 public class cs1PieceVar : MonoBehaviour
 {
     private bool pieceGrown = false;
-    [SerializeField] GameObject parent;
+    [SerializeField] GameObject originalParent;
+    [SerializeField] GameObject leftHand;
+    [SerializeField] GameObject rightHand;
     public List<GameObject> safeZoneList;
 
     public int despawnDelay = 5;
@@ -20,22 +22,20 @@ public class cs1PieceVar : MonoBehaviour
     private void Start()
     {
         startingPos = gameObject.transform.localPosition;
-        Debug.Log(startingPos);
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentParent = this.transform.parent.name;
-        Debug.Log(currentParent);
-        if (currentParent != parent.name && this.transform.parent.parent.name != "RightHand" && this.transform.parent.parent.name != "LeftHand" && !onStartPos)
+
+        if (gameObject.transform.parent == null && !onStartPos)
         {
             Debug.Log("WAITING");
             StartCoroutine(WaitForFunction());
         }
     }
 
-    public void OnTriggerExit(Collider col)
+    public void OnCollisionExit(Collision col)
     {
         for (int i = 0; i < safeZoneList.Count; i++)
         {
@@ -47,7 +47,7 @@ public class cs1PieceVar : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider col)
+    public void OnCollisionEnter(Collision col)
     {
         for(int i = 0; i < safeZoneList.Count; i++)
         {
@@ -69,11 +69,11 @@ public class cs1PieceVar : MonoBehaviour
 
     void resetPiece()
     {
-        if (currentParent != parent.name && !onStartPos)
+        if (this.transform.parent.parent.name != leftHand.name && this.transform.parent.parent.name != rightHand.name && !onStartPos)
         {
             onStartPos = true;
             Debug.Log(startingPos);
-            gameObject.transform.parent = parent.transform;
+            gameObject.transform.parent = originalParent.transform;
             gameObject.transform.localPosition = startingPos;
             Debug.Log("RESET");
         }
