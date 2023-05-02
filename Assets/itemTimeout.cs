@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class cs1PieceVar : MonoBehaviour
+public class itemTimeout : MonoBehaviour
 {
-    private bool pieceGrown = false;
     [SerializeField] GameObject originalParent;
-    [SerializeField] GameObject leftHand;
-    [SerializeField] GameObject rightHand;
-    public List<GameObject> safeZoneList;
+    [SerializeField] GameObject safeZone;
 
     public int despawnDelay = 5;
 
-    bool onStartPos = true;
-    bool holdingItem = true;
+    bool onStartPos = false;
     Vector3 startingPos;
 
     string currentParent = null;
@@ -27,52 +23,43 @@ public class cs1PieceVar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (gameObject.transform.parent == null && !onStartPos)
+        if (gameObject.transform.parent != originalParent && !onStartPos && !gameObject.GetComponent<Rigidbody>().isKinematic)
         {
             Debug.Log("WAITING");
             StartCoroutine(WaitForFunction());
         }
     }
 
-    public void OnCollisionExit(Collision col)
+    public void OnTriggerExit(Collider col)
     {
-        for (int i = 0; i < safeZoneList.Count; i++)
+        if (col.gameObject == safeZone)
         {
-            if (col.gameObject == safeZoneList[i])
-            {
-                onStartPos = false;
-                Debug.Log("OFF ZONE");
-            }
+            onStartPos = false;
         }
     }
 
-    public void OnCollisionEnter(Collision col)
+    public void OnTriggerEnter(Collider col)
     {
-        for(int i = 0; i < safeZoneList.Count; i++)
-        {
-            if (col.gameObject == safeZoneList[i])
+            if (col.gameObject == safeZone)
             {
                 onStartPos = true;
-                Debug.Log("ON ZONE");
             }
-        }
     }
 
     IEnumerator WaitForFunction()
     {
         yield return new WaitForSeconds(despawnDelay);
-        Debug.Log("DONE WAITING");
         resetPiece();
 
     }
 
     void resetPiece()
     {
-        if (this.transform.parent.parent.name != leftHand.name && this.transform.parent.parent.name != rightHand.name && !onStartPos)
+        if (!onStartPos)
         {
             onStartPos = true;
             Debug.Log(startingPos);
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             gameObject.transform.parent = originalParent.transform;
             gameObject.transform.localPosition = startingPos;
             Debug.Log("RESET");

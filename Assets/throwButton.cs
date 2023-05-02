@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class throwButton : MonoBehaviour
 {
-    [SerializeField] GameObject waterfallHitbox;
-    Vector3 changeHitboxPos = new Vector3(0f, 1.0f, 0);
+    [SerializeField] GameObject waterfallWater;
+    [SerializeField] GameObject throwItem;
+
+    private void Start()
+    {
+        waterfallWater.SetActive(false);
+    }
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "stone")
+        if (col.gameObject.name == throwItem.name)
         {
-            Debug.Log("HIT");
+            waterfallWater.SetActive(true);
         }
     }
 }
