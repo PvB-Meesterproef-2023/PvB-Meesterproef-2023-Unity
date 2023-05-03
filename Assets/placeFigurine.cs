@@ -18,6 +18,7 @@ public class placeFigurine : MonoBehaviour
         {
             col.gameObject.SetActive(false);
             staticObject.SetActive(true);
+            gameObject.transform.parent.GetComponentInParent<puzzleVar>().figurinePlaced++;
         }
     }
 }

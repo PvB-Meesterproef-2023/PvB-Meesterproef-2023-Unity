@@ -10,7 +10,7 @@ public class itemTimeout : MonoBehaviour
 
     public int despawnDelay = 5;
 
-    bool onStartPos = false;
+    bool onStartPos = true;
     Vector3 startingPos;
 
     string currentParent = null;
@@ -25,7 +25,6 @@ public class itemTimeout : MonoBehaviour
     {
         if (gameObject.transform.parent != originalParent && !onStartPos && !gameObject.GetComponent<Rigidbody>().isKinematic)
         {
-            Debug.Log("WAITING");
             StartCoroutine(WaitForFunction());
         }
     }
@@ -40,10 +39,10 @@ public class itemTimeout : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-            if (col.gameObject == safeZone)
-            {
-                onStartPos = true;
-            }
+        if (col.gameObject == safeZone)
+        {
+            onStartPos = true;
+        }
     }
 
     IEnumerator WaitForFunction()
@@ -58,7 +57,6 @@ public class itemTimeout : MonoBehaviour
         if (!onStartPos)
         {
             onStartPos = true;
-            Debug.Log(startingPos);
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             gameObject.transform.parent = originalParent.transform;
             gameObject.transform.localPosition = startingPos;

@@ -15,9 +15,6 @@ public class pieceVar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hasGrown)
-        {
-            Debug.Log("hasgrown");
-        }
+        
     }
 }
