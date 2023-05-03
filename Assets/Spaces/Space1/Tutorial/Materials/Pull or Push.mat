@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7998065052634035106
+--- !u!114 &-6725143436282937290
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Arrows
+  m_Name: Pull or Push
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -35,9 +35,9 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 2aeb653a87c6be547937c4faa287b087, type: 3}
-        m_Scale: {x: -0.28, y: 1}
-        m_Offset: {x: -0.59, y: 0.18}
+        m_Texture: {fileID: 2800000, guid: 7f6bdaaf2814c4a419d427aaf6bc2db5, type: 3}
+        m_Scale: {x: -0.98, y: 0.99}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -59,9 +59,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 2aeb653a87c6be547937c4faa287b087, type: 3}
-        m_Scale: {x: -0.28, y: 1}
-        m_Offset: {x: -0.59, y: 0.18}
+        m_Texture: {fileID: 2800000, guid: 7f6bdaaf2814c4a419d427aaf6bc2db5, type: 3}
+        m_Scale: {x: -0.98, y: 0.99}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
